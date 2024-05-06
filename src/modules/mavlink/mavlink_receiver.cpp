@@ -2616,7 +2616,9 @@ MavlinkReceiver::handle_message_hil_state_quaternion(mavlink_message_t *msg)
 		hil_global_pos.eph = 2.f;
 		hil_global_pos.epv = 4.f;
 		hil_global_pos.timestamp = hrt_absolute_time();
-		_global_pos_pub.publish(hil_global_pos);
+		// ESL
+		// _global_pos_pub.publish(hil_global_pos);
+		_gpos_ground_truth_pub.publish(hil_global_pos);
 	}
 
 	/* local position */
@@ -2661,7 +2663,10 @@ MavlinkReceiver::handle_message_hil_state_quaternion(mavlink_message_t *msg)
 		hil_local_pos.hagl_min = INFINITY;
 		hil_local_pos.hagl_max = INFINITY;
 		hil_local_pos.timestamp = hrt_absolute_time();
-		_local_pos_pub.publish(hil_local_pos);
+		// ESL
+		// _local_pos_pub.publish(hil_local_pos);
+		_lpos_ground_truth_pub.publish(hil_local_pos);
+
 	}
 
 	/* accelerometer */
